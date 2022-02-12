@@ -25,7 +25,7 @@ pub(super) async fn try_clean_pk3() -> Result<()> {
         let file = file.path().to_str().unwrap_or_default().to_string();
         if file.contains("legacy_v") && file.ends_with(".pk3") {
             tokio::fs::remove_file(&file).await?;
-            info!("\tDeleted: '{file}'.")
+            info!("Deleted: '{file}'.")
         }
     }
     Ok(())

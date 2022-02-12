@@ -31,7 +31,7 @@ pub(crate) async fn download() -> Result<String> {
 
 /// Install the configs.
 pub(crate) async fn install(path: &str) -> Result<()> {
-    info!("Installing snapshot to: '{HOME}'...");
+    info!("Installing configs and mapscripts to: '{HOME}'...");
 
     // Copy the configs.
     // TODO: Will be `legacy/configs` when Bystry fixes issue.
