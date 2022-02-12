@@ -5,8 +5,8 @@ use anyhow::Result;
 /// Copy source snapshot files to destination directories.
 pub(super) async fn copy_file(directory: &str, file: &str) -> Result<()> {
     // Set source and destination directory paths.
-    let source = format!("{directory}/{file}");
-    let destination = format!("{HOME}/{file}");
+    let source = format!("{directory}\\{file}");
+    let destination = format!("{HOME}\\{file}");
 
     // Copy source file to destination.
     tokio::fs::copy(&source, &destination).await?;

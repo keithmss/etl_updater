@@ -69,10 +69,10 @@ pub(crate) async fn install(path: &str) -> Result<()> {
     // TODO: Propose they make this file name consistent.
     let pk3 = path.replace("etlegacy-", "legacy_").replace("-x86_64", "");
     let pk3 = format!("{pk3}.pk3");
-    utility::copy_file(&format!("{path}/legacy"), &pk3).await?;
+    utility::copy_file(&format!("{path}\\legacy"), &pk3).await?;
 
     // Copy qagame binary.
-    utility::copy_file(&format!("{path}/legacy"), "qagame.mp.x86_64.so").await?;
+    utility::copy_file(&format!("{path}\\legacy"), "qagame.mp.x86_64.so").await?;
 
     // Remove unpacked files.
     tokio::fs::remove_dir_all(&path).await?;
