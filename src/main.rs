@@ -7,7 +7,7 @@ mod snapshot;
 
 use anyhow::Result;
 
-pub(crate) const HOME: &str = "./etscrim";
+pub(crate) const HOME: &str = "/opt/etscrim";
 
 #[tokio::main]
 async fn main() -> Result<()> {
