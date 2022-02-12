@@ -5,7 +5,9 @@ use anyhow::{anyhow, Result};
 /// Copy source configuration directories to destination directories.
 pub(super) async fn copy_directory(path: &str, directory: &str) -> Result<()> {
     // Set source directory path.
-    let source = format!("{path}\\{directory}");
+    let source = format!("{path}/{directory}");
+
+    info!("DEBUG: {source}");
 
     // Copy files from source to destination.
     let mut files = tokio::fs::read_dir(&source).await?;
@@ -19,6 +21,8 @@ pub(super) async fn copy_directory(path: &str, directory: &str) -> Result<()> {
             .next()
             .ok_or_else(|| anyhow!("Could not get file name."))?
             .to_string();
+
+            info!("DEBUG: {destination}");
 
         // TODO: Will be `{HOME}/{directory}/{destination}` when Bystry fixes issue.
         let destination = format!("{HOME}\\legacy\\{directory}\\{destination}");
