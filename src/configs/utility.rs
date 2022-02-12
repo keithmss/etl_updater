@@ -7,8 +7,6 @@ pub(super) async fn copy_directory(path: &str, directory: &str) -> Result<()> {
     // Set source directory path.
     let source = format!("{path}/{directory}");
 
-    info!("DEBUG: {source}");
-
     // Copy files from source to destination.
     let mut files = tokio::fs::read_dir(&source).await?;
     while let Some(file) = files.next_entry().await? {
@@ -22,10 +20,8 @@ pub(super) async fn copy_directory(path: &str, directory: &str) -> Result<()> {
             .ok_or_else(|| anyhow!("Could not get file name."))?
             .to_string();
 
-            info!("DEBUG: {destination}");
-
         // TODO: Will be `{HOME}/{directory}/{destination}` when Bystry fixes issue.
-        let destination = format!("{HOME}\\legacy\\{directory}\\{destination}");
+        let destination = format!("{HOME}/legacy/{directory}/{destination}");
         tokio::fs::copy(file.path(), &destination).await?;
         info!("Installed file: '{destination}'.")
     }

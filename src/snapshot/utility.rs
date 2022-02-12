@@ -8,8 +8,6 @@ pub(super) async fn copy_file(directory: &str, file: &str) -> Result<()> {
     let source = format!("{directory}/{file}");
     let destination = format!("{HOME}/{file}");
 
-    info!("DEBUG: {source} {destination}");
-
     // Copy source file to destination.
     tokio::fs::copy(&source, &destination).await?;
     info!("Installed file: '{destination}'.");
