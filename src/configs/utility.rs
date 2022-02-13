@@ -22,6 +22,7 @@ pub(super) async fn copy_directory(path: &str, directory: &str) -> Result<()> {
 
         // TODO: Will be `{HOME}/{directory}/{destination}` when Bystry fixes issue.
         let destination = format!("{HOME}/legacy/{directory}/{destination}");
+        warn!("DEBUG:::: destination");
         tokio::fs::copy(file.path(), &destination).await?;
         info!("Installed file: '{destination}'.")
     }
