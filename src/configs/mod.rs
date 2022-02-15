@@ -1,9 +1,8 @@
-use crate::HOME;
-
 mod utility;
 
+use crate::HOME;
+
 use anyhow::{anyhow, Result};
-use tokio::io::AsyncWriteExt;
 use zip::ZipArchive;
 
 #[rustfmt::skip]
