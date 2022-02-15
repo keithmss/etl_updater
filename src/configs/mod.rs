@@ -23,8 +23,7 @@ pub(crate) async fn download() -> Result<String> {
     info!("Downloading: '{REPOSITORY}'...");
     let response = reqwest::get(REPOSITORY).await?;
     let content = response.bytes().await?;
-    let mut file = tokio::fs::File::create(&destination).await?;
-    file.write_all(&content).await?;
+    tokio::fs::write(&destination, &content).await?;
     info!("Saved file to: '{destination}'.");
     Ok(destination.to_string())
 }
