@@ -6,7 +6,6 @@ use anyhow::{anyhow, Result};
 use flate2::read::GzDecoder;
 use scraper::{Html, Selector};
 use tar::Archive;
-use tokio::io::AsyncWriteExt;
 
 const TARGET: &str = "x86_64.tar.gz";
 const WORKFLOW: &str = "https://www.etlegacy.com/workflow-files";
@@ -24,8 +23,7 @@ pub(crate) async fn download(url: String) -> Result<String> {
     info!("Downloading: '{url}'...");
     let response = reqwest::get(&url).await?;
     let content = response.bytes().await?;
-    let mut file = tokio::fs::File::create(&destination).await?;
-    file.write_all(&content).await?;
+    tokio::fs::write(&destination, &content).await?;
     info!("Saved file to: '{destination}'.");
     Ok(destination.to_string())
 }
